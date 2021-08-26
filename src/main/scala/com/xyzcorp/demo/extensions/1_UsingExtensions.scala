@@ -1,0 +1,11 @@
+package com.xyzcorp.demo.extensions
+
+object UsingExtensions:
+  extension (x: Int)
+    def isOdd: Boolean = x % 2 == 0
+    def isEven: Boolean = !isOdd
+
+@main def assertASimpleExtensionWorks: Unit =
+  import UsingExtensions.*
+  println(10.isEven)
+  println(isEven(3))

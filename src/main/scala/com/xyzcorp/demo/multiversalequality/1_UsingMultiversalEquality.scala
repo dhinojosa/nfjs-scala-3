@@ -1,0 +1,17 @@
+package com.xyzcorp.demo.multiversalequality
+
+//Turn on Strict Equality
+//Can also be turned on with: -language:strictEquality at command line
+import scala.language.strictEquality
+
+class Box[T](x: T) derives CanEqual
+
+@main def assertThatCanEqualWorks: Unit =
+  //println(Box(40) == Box("Hello")) //Will not compile
+
+  //Will compile since there is a CanEqual[Int, Double] instance
+  println(Box(1203) == Box(123.0))
+  //Show that there is an instance
+  println(summon[CanEqual[Int, Double]])
+  // Show that there is an instance
+  println(summon[CanEqual[Box[String], Box[String]]])
